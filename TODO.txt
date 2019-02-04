@@ -1,0 +1,8 @@
+IMPORTANT
+- schema
+  - tags 
+
+
+
+NOT IMPORTANT
+- "Add task" not adding to right menu

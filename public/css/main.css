@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,800|Ubuntu:300,400,500,700');
+
+/* font-family: 'Open Sans', sans-serif; */
+/* font-family: 'Ubuntu', sans-serif; */
+
+
+h1,h2,h3,h4,h5,h6 {
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    color: #333;
+    background: #029af0;
+    font-family: 'Open Sans', sans-serif;    
+}
+
+button {
+    font-family: 'Open Sans', sans-serif;        
+}
+
+*,*:after,*:before {
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+.edit__task__modal, .addtaskmodal {
+    position: fixed;
+    left:50%;
+    min-width: 350px;
+    max-width: 350px;
+    margin-left: -175px;
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 5px rgba(0,0,0,.15);
+}
+
+.addtaskmodal {
+    top: 50%;
+    transform: translateY(-50% );
+}
+
+label {
+    display: block;
+}
+
+input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding-left: 15px;
+    border: 1px solid rgb(164, 163, 163);
+}    
+
+button {
+    padding: 0.5rem 1rem;
+    transition: all 0.25s;
+    border: 1px solid transparent;
+}
+
+button.success {
+    background: #0099CC;
+    border-color: #0099CC;
+    color: #fff;
+}
+
+button.warning {
+    background: #DC143C;
+    border-color: #DC143C;
+    color: #fff;
+}
+
+.addtaskmodal >* {
+    margin-bottom: 1rem;
+}
+
+.addtaskmodal > button {
+    margin-bottom: 0;
+    width: 100%;
+    background: transparent;
+    border-color: orange;
+}
+
+.addtaskmodal > button:hover {
+    background: orange;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tasklist {
+    font-family: 'Ubuntu', sans-serif;
+    /* font-style: italic; */
+    font-weight: 300;    
+    position: fixed;
+    top: 2rem;
+    right:2rem;
+    bottom: 2rem;
+    padding: 2rem;
+    min-width: 300px;
+    max-width: 300px;
+    background:#d2f2fd;
+    /* color:  */
+}
+
+.tasklist > li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.tasklist > li:after {
+    content:'\f044';
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    color: #686868;
+    font-size: 0.8rem;
+    font-family: fontAwesome;
+}
+
+.edit__task__modal {
+    position: fixed;
+    top: -50%;
+    transition: top 0.5s;
+    z-index: 9999;    
+}
+
+.overlay {
+    position: fixed;
+    /* top: 0; */
+    /* left:0; */
+    /* bottom: 0; */
+    /* right: 0; */
+    height: 100vh;
+    width: 100vw;
+    top: -100%;
+    z-index: 999;
+    background: rgba(0,0,0,.8);
+}
+
+.overlay.show {
+    top: 0;
+}
+
+.edit__task__modal.show {
+    top: 50%;
+}
+
+.edit__task__modal > .button__wrapper {
+    margin-top: 1rem;
+}
+
+
+/* CODE FOR BEM mode */
+
+.hide {
+    display: none;
+}
+
+.chios__maintasklist > li {
+
+}
+
+.chiostaskblock__main {
+    background: #029af0;
+    max-width: 350px;
+    min-width: 350px;
+    padding: 1rem;
+    position: absolute;
+    margin-left: -175px;
+    left: 50%;
+    top: 30vh;
+    box-shadow: 0 0 30px #4165f7
+}
+
+.chiostaskblock__main > header {
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.chiostaskblock__main > header > h1 {
+    font-size: 1.25rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.chiostaskblock__maintasklist > li {
+    position: relative;
+    margin: 0.75rem 0;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: rgba(255,255,255,0.25);
+}
+
+.chiostaskblock__maintasklist > li > button {
+    background: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.chiostaskblock__maintasklist > li > button.edit {
+    color: rgba(0,159,80,0.5);    
+}
+
+.chiostaskblock__maintasklist > li > button.delete {
+    right: 3rem;
+    color: rgba(255,26,26,0.25);
+}
+
+
+/**************************\
+  Basic Modal Styles
+\**************************/
+
+.modal {
+    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+  }
+  
+  .modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal__container {
+    background-color: #fff;
+    padding: 30px;
+    max-width: 500px;
+    max-height: 100vh;
+    border-radius: 4px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal__title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    color: #00449e;
+    box-sizing: border-box;
+  }
+  
+  .modal__close {
+    background: transparent;
+    border: 0;
+  }
+  
+  .modal__header .modal__close:before { content: "\2715"; }
+  
+  .modal__content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: rgba(0,0,0,.8);
+  }
+  
+  .modal__btn {
+    font-size: .875rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background-color: #e6e6e6;
+    color: rgba(0,0,0,.8);
+    /* border-radius: .25rem; */
+    border-style: none;
+    border-width: 0;
+    cursor: pointer;
+    -webkit-appearance: button;
+    text-transform: none;
+    overflow: visible;
+    line-height: 1.15;
+    margin: 0;
+    will-change: transform;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: all 0.25;
+  }
+  
+  .modal__btn-primary {
+    border: 1px solid #029af0;
+    background-color: #029af0;
+    color: #fff;
+  }
+
+  .modal__btn-primary:hover {
+      background: #007DC3;
+      border-color: #007DC3;
+  }
+
+  .chios__edittaskmicromodal input,
+  .chios__addtaskmicromodal input {
+      width: 100%;
+      min-width: 350px;
+      border:none;
+      outline: none;
+      border-bottom: 1px solid #eee;
+  }
+
+  .chios__addtaskmicromodal main {
+
+  }
+
+  .input__wrapper {
+      margin: 0.75rem 0;
+  }
+
+  .input__wrapper > input {
+      margin: 0;
+  }
+
+  .input__wrapper label {
+      font-size: 0.88rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+  }
+  
+
+  .modal__btn-danger {
+      border: 1px solid rgba(255,26,26,1);    
+      background:  rgba(255,26,26,1);
+      color: #fff;
+  }
+ 
+  .modal__btn-danger:hover {
+      background:  rgb(193, 4, 4);
+      border-color:  rgb(193, 4, 4);
+  }
+
+  /**************************\
+    Demo Animation Style
+  \**************************/
+  @keyframes mmfadeIn {
+      from { opacity: 0; }
+        to { opacity: 1; }
+  }
+  
+  @keyframes mmfadeOut {
+      from { opacity: 1; }
+        to { opacity: 0; }
+  }
+  
+  @keyframes mmslideIn {
+    from { transform: translateY(15%); }
+      to { transform: translateY(0); }
+  }
+  
+  @keyframes mmslideOut {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10%); }
+  }
+  
+  .micromodal-slide {
+    display: none;
+  }
+  
+  .micromodal-slide.is-open {
+    display: block;
+  }
+  
+  .micromodal-slide[aria-hidden="false"] .modal__overlay {
+    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="false"] .modal__container {
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="true"] .modal__overlay {
+    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
+  
+  .micromodal-slide[aria-hidden="true"] .modal__container {
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+  }
+  
+  .micromodal-slide .modal__container,
+  .micromodal-slide .modal__overlay {
+    will-change: transform;
+  }
