@@ -68,11 +68,11 @@
                         <input type="text" placeholder="Enter your awesome task" name="add__task"></input>                        
                     </div>
                     <div class="input__wrapper">
-                        <label>Add tags</label>                    
-                        <select name="task_tags">    
+                        <label>Add tags</label>                  
+                        <select name="task_tags">
                             <% var data = tags %>
                             <% data.forEach( function( _e , i ) {  %>
-                                <option value="<%= _e.tag_name %>"><%= _e.tag_name %></option>
+                                <option value="<%= _e.tag %>"><%= _e.tag %></option>
                             <% }) %>            
                         </select>
                     </div>

@@ -31,10 +31,10 @@ router.post( '/edittaskstodisplay' , ( req , res , next ) => {
         
           let mytag_id_array = rows.map( ( _e ) => _e.mytags_id );
 
-          connection.query( "SELECT tag_name FROM mytags WHERE tag_id IN ( " + mytag_id_array.join(' , ') + " )"  , function (err, rows, fields) {
+          connection.query( "SELECT tag FROM mytags WHERE tag_id IN ( " + mytag_id_array.join(' , ') + " )"  , function (err, rows, fields) {
             if (err) throw err
 
-            let tagArray = rows.map( ( _e ) => _e.tag_name );
+            let tagArray = rows.map( ( _e ) => _e.tag );
 
             console.log(tagArray);  
             RESPONSE_DATA['tags'] = [ ...tagArray ];
@@ -58,11 +58,14 @@ router.post( '/edittaskstodisplay' , ( req , res , next ) => {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
+
+  // host     : '127.0.0.1',
+
   var connection = mysql.createConnection({
-    host     : '127.0.0.1',
-    user     : 'gautam',
+    host     : 'localhost',
+    user     : 'root',
     password : 'indegene@123',
-    database : 'gautam'
+    database : 'mytasks'
   });
 
   // var connection = mysql.createConnection({
@@ -72,19 +75,19 @@ router.get('/', function(req, res, next) {
   //   database : 'mytasks'
   // });
   
-  connection.connect()
+  connection.connect( );
   
-  connection.query('SELECT tag_name from mytags', function (err, rows, fields) {
-    if (err) throw err
+  // connection.query('SELECT tag from mytags', function (err, rows, fields) {
+  //   if (err) throw err
   
-    console.log( rows );
+  //   console.log( rows );
     
-    res.render('index', { tags : rows });
+  //   res.render('index', { tags : rows });
   
-  });
+  // });
 
-  /*
-  connection.query('SELECT tag_name from mytags', function (err, rows, fields) {
+  
+  connection.query('SELECT tag from mytags', function (err, rows, fields) {
     if (err) throw err
   
     console.log( rows );
@@ -92,9 +95,11 @@ router.get('/', function(req, res, next) {
     res.render('index', { tags : rows });
   
   });
-  */
   
-  connection.end();
+  
+  // connection.end();
+
+    //res.render('index', 'LOL');
 
 });
 
@@ -110,7 +115,7 @@ router.post( '/addnewtask' , ( req , res , next ) => {
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'indegene@123',
     database : 'mytasks'
   });
   
@@ -125,7 +130,7 @@ router.post( '/addnewtask' , ( req , res , next ) => {
 
     console.log(req.body.tags.join(' , '));
 
-    let QUERY2 = "INSERT INTO mytasks_mytags ( mytags_id , mytasks_id ) SELECT tag_id, "+ rows.insertId +" FROM mytags WHERE tag_name IN ( "+ req.body.tags.join(' , ') +" )";
+    let QUERY2 = "INSERT INTO mytasks_mytags ( mytags_id , mytasks_id ) SELECT tag_id, "+ rows.insertId +" FROM mytags WHERE tag IN ( 'buylist' )";
 
     console.log(QUERY2);
 
@@ -146,10 +151,17 @@ router.post( '/gettaskstodisplay' , ( req , res , next ) => {
   let data = null;
   let QUERY = "SELECT id , task from mytasks";
 
+  /*var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'indegene@123',
+    database : 'mytasks'
+  }); */
+
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'indegene@123',
     database : 'mytasks'
   });
   
@@ -230,7 +242,7 @@ router.post( '/deletetaks' , ( req , res , next ) => {
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'indegene@123',
     database : 'mytasks'
   });
   
