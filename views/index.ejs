@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">        
         <!-- <link rel="manifest" href="site.webmanifest"> -->
         <!-- <link rel="apple-touch-icon" href="icon.png"> -->
         <!-- Place favicon.ico in the root directory -->
@@ -46,6 +47,15 @@
             <header>
                 <h1>Your tasks</h1>
             </header>
+
+
+            <select name="task_tags">
+                <% var data = tags %>
+                <% data.forEach( function( _e , i ) {  %>
+                    <option value="<%= _e.tag %>"><%= _e.tag %></option>
+                <% }) %>            
+            </select>  
+
             <ul class="chiostaskblock__maintasklist">
 
             </ul>  
@@ -65,16 +75,11 @@
                 </header>
                 <main class="modal__content">
                     <div class="input__wrapper">
-                        <input type="text" placeholder="Enter your awesome task" name="add__task"></input>                        
+                        <input type="text" placeholder="Enter your awesome task" name="add__task">                        
                     </div>
                     <div class="input__wrapper">
                         <label>Add tags</label>                  
-                        <select name="task_tags">
-                            <% var data = tags %>
-                            <% data.forEach( function( _e , i ) {  %>
-                                <option value="<%= _e.tag %>"><%= _e.tag %></option>
-                            <% }) %>            
-                        </select>
+                        
                     </div>
                 </main>
                 <footer class="modal__footer">
@@ -130,6 +135,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
         <!-- <script src="js/plugins.js"></script> -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
         <script src="js/plugin/selectize.min.js"></script>
         <script src="js/main.js"></script>

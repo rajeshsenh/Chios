@@ -411,3 +411,14 @@ ul {
   .micromodal-slide .modal__overlay {
     will-change: transform;
   }
+
+
+  /*  Plugin overrides */
+
+  .ui-widget {
+    font-family: 'Open Sans', sans-serif;    
+  }
+
+  .ui-selectmenu-button.ui-button {
+      width: 100%;
+  }

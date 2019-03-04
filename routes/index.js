@@ -5,10 +5,9 @@ var mysql = require('mysql');
 
 router.post( '/edittaskstodisplay' , ( req , res , next ) => {
 
-  let ID = req.body.edittaskid;
+  let ID = req.body.edittaskid,
+  QUERY_FOR_TASK = `SELECT task from mytasks WHERE id = ${ID}`;
 
-  let QUERY_FOR_TASK = `SELECT task from mytasks WHERE id = ${ID}`,
-  QUERY_FOR_TAG_IDS = `SELECT mytags_id FROM mytasks_mytags WHERE mytasks_id = ${ID}`,
   RESPONSE_DATA = {
 
   }
@@ -16,40 +15,62 @@ router.post( '/edittaskstodisplay' , ( req , res , next ) => {
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '',
+    password : 'indegene@123',
     database : 'mytasks'
   });
   
   connection.connect()
   
   connection.query( QUERY_FOR_TASK  , function (err, rows, fields) {
-
-      RESPONSE_DATA['task'] = rows[0].task;
-
-      connection.query( QUERY_FOR_TAG_IDS  , function (err, rows, fields) {
-          if (err) throw err
-        
-          let mytag_id_array = rows.map( ( _e ) => _e.mytags_id );
-
-          connection.query( "SELECT tag FROM mytags WHERE tag_id IN ( " + mytag_id_array.join(' , ') + " )"  , function (err, rows, fields) {
-            if (err) throw err
-
-            let tagArray = rows.map( ( _e ) => _e.tag );
-
-            console.log(tagArray);  
-            RESPONSE_DATA['tags'] = [ ...tagArray ];
-            console.log(RESPONSE_DATA);
-            res.send(RESPONSE_DATA);
-
-          }); 
-
-      }); 
-
+      if (err) throw err;
+      res.send(rows);
   });  
 
+});
 
+
+/*
+router.post( '/gettagstodisplay' , ( req , res , next ) => {
+
+  QUERY_ALLTAGS = `SELECT * FROM mytags`;
+
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'indegene@123',
+    database : 'mytasks'
+  });
+
+  connection.connect()
   
-  //connection.end();
+  connection.query( QUERY_ALLTAGS  , function (err, rows, fields) {
+      if (err) throw err;
+
+      console.log(rows);
+
+      res.send(rows);
+  }); 
+
+});
+*/
+
+router.post( '/updatetasktodisplay' , ( req , res , next ) => {
+
+  QUERY_FOR_UPDATETASK = `UPDATE mytasks SET mytasks.task = "${req.body.updatetasktext}" WHERE mytasks.id = ${req.body.updatetaskid}` ;
+
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'indegene@123',
+    database : 'mytasks'
+  });
+  
+  connection.connect()
+  
+  connection.query( QUERY_FOR_UPDATETASK  , function (err, rows, fields) {
+      if (err) throw err;
+      res.send(rows);
+  });  
 
 });
 
@@ -105,12 +126,12 @@ router.get('/', function(req, res, next) {
 
 
 router.post( '/addnewtask' , ( req , res , next ) => {
-  // console.log( req.body );
 
-  let data = null;
-  let QUERY = "INSERT INTO mytasks (task) VALUES ('"+ req.body.task +"')";
+  let QUERYINSERTTASK = `INSERT INTO mytasks (task) VALUES( 'lalala' )`;
+  //QUERY_INSERT_TAGS = `INSERT INTO mytasks_mytags (mytags_id , mytasks_id) VALUES( ( SELECT tag_id FROM mytags WHERE tag = "${req.body.tags}" ) , LAST_INSERT_ID() )`;
 
-  console.log( req.body.tags );
+  console.log(QUERY_INSERT_TASK);
+  console.log(QUERY_INSERT_TAGS);
 
   var connection = mysql.createConnection({
     host     : 'localhost',
@@ -122,26 +143,15 @@ router.post( '/addnewtask' , ( req , res , next ) => {
   connection.connect()
   
 
-  connection.query( QUERY  , function (err, rows, fields) {
-    if (err) throw err
+  connection.query( QUERYINSERTTASK  , function (err, rows, fields) {
+    if (err) throw err;
+    res.send(rows);
+    // connection.query( QUERY_INSERT_TAGS  , function (err, rows, fields) {
+    //   if (err) throw err;
+  
+    //   res.send(rows);
+    // });
 
-
-    //let tags = req.body.tags.map( ( _e ) => { return "'" + _e + "'" } );
-
-    console.log(req.body.tags.join(' , '));
-
-    let QUERY2 = "INSERT INTO mytasks_mytags ( mytags_id , mytasks_id ) SELECT tag_id, "+ rows.insertId +" FROM mytags WHERE tag IN ( 'buylist' )";
-
-    console.log(QUERY2);
-
-    connection.query(  QUERY2  , function (err, rows, fields) {
-      if (err) throw err
-
-      console.log(rows);
-
-    }); 
-
-    res.send(data);
   });
 
 });
@@ -149,8 +159,13 @@ router.post( '/addnewtask' , ( req , res , next ) => {
 
 router.post( '/gettaskstodisplay' , ( req , res , next ) => {
   let data = null;
-  let QUERY = "SELECT id , task from mytasks";
-
+  // let QUERY = "SELECT id , task from mytasks";
+  let QUERY = `SELECT mytasks.id , mytasks.task , GROUP_CONCAT(  mytags.tag  ) AS tags
+	    FROM mytasks_mytags 
+	    INNER JOIN mytasks ON mytasks_mytags.mytasks_id = mytasks.id
+	    INNER JOIN mytags ON mytasks_mytags.mytags_id = mytags.tag_id
+      GROUP BY mytasks.id , mytasks.task`
+   
   /*var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -170,6 +185,9 @@ router.post( '/gettaskstodisplay' , ( req , res , next ) => {
   connection.query( QUERY  , function (err, rows, fields) {
     if (err) throw err
     data = rows;  
+
+    console.log(data);
+
     res.send(data);
   });
   
@@ -184,8 +202,7 @@ router.post( '/gettaskstodisplay' , ( req , res , next ) => {
 
 // DELETE THIS ROUTE..
 router.get( '/checkquery' , ( req , res , next ) => {
-  // console.log( req.body );
-  // console.log('LALA !');
+
   let RESPONSE_DATA = {
 
   }
@@ -199,37 +216,22 @@ router.get( '/checkquery' , ( req , res , next ) => {
     database : 'mytasks'
   });
   
-  connection.connect()
-  
-  // let vv = req.body;
+  connection.connect();
 
-  connection.query( QUERY  , function (err, rows, fields) {
+  connection.query( QUERY  , function ( err, rows, fields ) {
     if (err) throw err
     
     let mytag_id_array = rows.map( ( _e ) => _e.mytags_id );
-    
-    console.log(mytag_id_array);
 
-    // console.log(rows);
-    // console.log('INSERT ID IS : ' + rows.insertId);
     connection.query( "SELECT tag_name FROM mytags WHERE tag_id IN ( " + mytag_id_array.join(' , ') + " )"  , function (err, rows, fields) {
       if (err) throw err
       console.log(rows);
     });
 
-    // console.log('INSERT ID IS : ' + rows.insertId)
-
-    /*
-    connection.query( 'SELECT LAST_INSERT_ID()'  , function (err, rows, fields) {
-      if (err) throw err
-      console.log(rows);
-    }); 
-    */  
-
     res.send(data);
+
   });
   
-  // connection.end();
 
 });
 
