@@ -2,4 +2,4 @@
 
 You need to create the following tables in MySql
 
-![Table mytags](https://imgur.com/sDGp91t)
+![Table mytags](https://i.imgur.com/sDGp91t.jpg)
