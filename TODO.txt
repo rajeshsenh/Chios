@@ -7,6 +7,9 @@ IMPORTANT ON HOLD
 
 ENCANCEMENTS
  - https://hernansartorio.com/jquery-nice-select/
+ - success and failure messages.
+ - Validation
+ - Add outline buttons instead ::- https://getbootstrap.com/docs/4.0/components/buttons/
     
 NOT IMPORTANT
 - login to database code is being duplicated , how to avoid this ?
