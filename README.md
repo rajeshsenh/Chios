@@ -32,11 +32,11 @@ You need to create the following tables in MySql
 - Work on code reflecting live update.
 
 #### IMPORTANT ON HOLD
- - ![Implement sort](https://jsfiddle.net/8zgsrb5k/)
+ - [Implement sort](https://jsfiddle.net/8zgsrb5k/)
 
 #### ENCANCEMENTS
  - Validation
- - ![Add outline buttons instead](https://getbootstrap.com/docs/4.0/components/buttons/)
+ - [Add outline buttons instead](https://getbootstrap.com/docs/4.0/components/buttons/)
     
 #### NOT IMPORTANT
 - login to database code is being duplicated , how to avoid this ?
