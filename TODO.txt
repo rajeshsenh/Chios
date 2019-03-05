@@ -1,7 +1,6 @@
 IMPORTANT
-- Make Edit task work.
-- Make Add  task work.
-
+- Integrate - https://lokesh-coder.github.io/pretty-checkbox/#installation
+- Work on code reflecting live update.
 
 IMPORTANT ON HOLD
 - Implement https://jsfiddle.net/8zgsrb5k/
@@ -9,7 +8,6 @@ IMPORTANT ON HOLD
 ENCANCEMENTS
  - https://hernansartorio.com/jquery-nice-select/
     
-
 NOT IMPORTANT
 - login to database code is being duplicated , how to avoid this ?
 - How to store login credentials in a .evn as when i upload to github the login details are visible.

@@ -20,7 +20,7 @@ You need to create the following tables in MySql
 
 ![Table mytags](https://i.imgur.com/tIqmGXh.jpg)
 
-*Note :: note that mytags_id and mytasks_id are foreign keys of mytags.tag_id and mytasks.id respectively.*
+*Note :: in the above table mytags_id and mytasks_id are foreign keys of mytags.tag_id and mytasks.id respectively.*
 
 **Once you've created the above tables , you can now open the teminal in chios and run `npm start` and then you should beable to see the app running on `localhost:3000` in your browser.**
 

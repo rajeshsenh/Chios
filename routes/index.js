@@ -29,31 +29,6 @@ router.post( '/edittaskstodisplay' , ( req , res , next ) => {
 });
 
 
-/*
-router.post( '/gettagstodisplay' , ( req , res , next ) => {
-
-  QUERY_ALLTAGS = `SELECT * FROM mytags`;
-
-  var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'indegene@123',
-    database : 'mytasks'
-  });
-
-  connection.connect()
-  
-  connection.query( QUERY_ALLTAGS  , function (err, rows, fields) {
-      if (err) throw err;
-
-      console.log(rows);
-
-      res.send(rows);
-  }); 
-
-});
-*/
-
 router.post( '/updatetasktodisplay' , ( req , res , next ) => {
 
   QUERY_FOR_UPDATETASK = `UPDATE mytasks SET mytasks.task = "${req.body.updatetasktext}" WHERE mytasks.id = ${req.body.updatetaskid}` ;
@@ -78,10 +53,7 @@ router.post( '/updatetasktodisplay' , ( req , res , next ) => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-
-  // host     : '127.0.0.1',
-
+  
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -127,11 +99,11 @@ router.get('/', function(req, res, next) {
 
 router.post( '/addnewtask' , ( req , res , next ) => {
 
-  let QUERYINSERTTASK = `INSERT INTO mytasks (task) VALUES( 'lalala' )`;
-  //QUERY_INSERT_TAGS = `INSERT INTO mytasks_mytags (mytags_id , mytasks_id) VALUES( ( SELECT tag_id FROM mytags WHERE tag = "${req.body.tags}" ) , LAST_INSERT_ID() )`;
+  let QUERYINSERTTASK = `INSERT INTO mytasks (task) VALUES( "${req.body.task}" )`;
+  QUERYINSERTTAGS = `INSERT INTO mytasks_mytags (mytags_id , mytasks_id) VALUES( ( SELECT tag_id FROM mytags WHERE tag = "${req.body.tags}" ) , LAST_INSERT_ID() )`;
 
-  console.log(QUERY_INSERT_TASK);
-  console.log(QUERY_INSERT_TAGS);
+  // console.log(QUERYINSERTTASK);
+  // console.log(QUERYINSERTTAGS);
 
   var connection = mysql.createConnection({
     host     : 'localhost',
@@ -145,12 +117,11 @@ router.post( '/addnewtask' , ( req , res , next ) => {
 
   connection.query( QUERYINSERTTASK  , function (err, rows, fields) {
     if (err) throw err;
-    res.send(rows);
-    // connection.query( QUERY_INSERT_TAGS  , function (err, rows, fields) {
-    //   if (err) throw err;
-  
-    //   res.send(rows);
-    // });
+
+    connection.query( QUERYINSERTTAGS  , function (err, rows, fields) {
+        if (err) throw err;
+        res.send(rows);
+    });
 
   });
 

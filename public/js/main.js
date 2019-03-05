@@ -1,12 +1,21 @@
+/* import { MDCFormField } from '@material/form-field';
+import { MDCCheckbox } from '@material/checkbox'; */
+
+
 $(function() {
 
-
+    /* 
+    const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
+    const checkbox = new MDCCheckbox(document.querySelector('.mdc-checkbox'));
+    formField.input = checkbox; */
 
     /* GENERIC PLUGIN INITIALIZATION */
 
-    let $tags_menu_clone = $( ".chiostaskblock__main select[name='task_tags']" ).clone();
+    let $tags_menu_clone = $( ".chiostaskblock__main .chios__sorttasks" ).clone();
+    $tags_menu_clone
+                .appendTo( $('#chios__addtaskmicromodal .modal__content > div:eq(1)') );
 
-    $( ".chiostaskblock__main select[name='task_tags']" ).selectmenu({
+    /*$( ".chiostaskblock__main input[type='radio'][name='tagsradio']" ).selectmenu({
         change : function( event , ui ) {
             console.log( ui.item.value );
 
@@ -26,6 +35,23 @@ $(function() {
                 .show();
 
         }
+    });*/
+
+    $( ".chiostaskblock__main input[type='radio'][name='tagsradio']" ).on('change' , (e) => {
+
+        var val = $.trim( $(e.currentTarget).val() );
+    
+            if( val === 'all' ) {
+             $('ul > li').show()
+                return;
+            }
+   
+            $('ul.chiostaskblock__maintasklist > li')
+                .hide()
+                .filter( ( i , _e ) => {
+                    return val === $.trim($(_e).data('database-tags'));  
+                })
+                .show();
     });
 
     setTimeout( () => {
@@ -69,7 +95,7 @@ $(function() {
                 },
                 body: JSON.stringify({ 
                     'task' : $('.chios__addtaskmicromodal input[name="add__task"]').val(),
-                    'tags' : 'office' 
+                    'tags' : $.trim($('#chios__addtaskmicromodal input[type="radio"]:checked').val()) 
                 })
             })
             .then( ( resp ) => {
@@ -153,22 +179,6 @@ $(function() {
 
     $('.overlay , .edit__task__modal .warning , .edit__task__modal .success').on('click' , (e) => {
         $('.edit__task__modal , .overlay').removeClass('show');
-    });
-
-    $('.chiostaskblock__main button').on('click' , (e) => {
-
-        if( !$('#chios__addtaskmicromodal .modal__content > div:eq(1) select').length ) {
-            $tags_menu_clone
-                .appendTo( $('#chios__addtaskmicromodal .modal__content > div:eq(1)') );
-                
-            $('#chios__addtaskmicromodal .modal__content > div:eq(1) select').selectmenu({
-                change : function( event , ui ) {
-                    console.log( ui.item.value );
-        
-                }
-            });    
-        }
-        
     });
 
 

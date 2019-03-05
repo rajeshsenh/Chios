@@ -13,7 +13,7 @@ body {
     padding: 0;
     margin: 0;
     color: #333;
-    background: #029af0;
+    background: #fff;
     font-family: 'Open Sans', sans-serif;    
 }
 
@@ -172,7 +172,7 @@ ul {
 }
 
 .chiostaskblock__main {
-    background: #029af0;
+    background: #fff;
     max-width: 350px;
     min-width: 350px;
     padding: 1rem;
@@ -180,11 +180,11 @@ ul {
     margin-left: -175px;
     left: 50%;
     top: 30vh;
-    box-shadow: 0 0 30px #4165f7
+    box-shadow: 0 0 30px rgba(0,0,0,.15);
 }
 
 .chiostaskblock__main > header {
-    color: #fff;
+    color: #222;
     text-align: center;
     padding: 1rem;
 }
@@ -196,12 +196,50 @@ ul {
     letter-spacing: 2px;
 }
 
+.chiostaskblock__main .chios__sorttasks {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.chios__sorttasks .pretty .state label {
+    /* font-weight:  */
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.pretty .state label:after, 
+.pretty .state label:before {
+    top:0;
+}
+
+.chiostaskblock__main > button {
+    width: 100%;
+}
+
+.chiostaskblock__maintasklist > li:first-child {
+    margin-top: 0;
+}
+
 .chiostaskblock__maintasklist > li {
     position: relative;
     margin: 0.75rem 0;
     padding: 0.5rem 1rem;
-    color: #fff;
+    color:#222;
+    border: 1px solid rgba(0,0,0,0.05); 
     background: rgba(255,255,255,0.25);
+}
+
+.chiostaskblock__maintasklist > li:nth-of-type(3n + 0) {
+    border-left: 5px solid orange;
+}
+
+.chiostaskblock__maintasklist > li:nth-of-type(3n + 1) {
+    border-left: 5px solid olive;
+}
+
+.chiostaskblock__maintasklist > li:nth-of-type(3n + 2) {
+    border-left: 5px solid skyblue;
 }
 
 .chiostaskblock__maintasklist > li > button {
@@ -260,6 +298,16 @@ ul {
     align-items: center;
   }
   
+  .modal__header > h2 {
+    color: #222;
+    padding-left: 1rem;
+    border-left: 5px solid turquoise;
+  }
+
+  .modal__footer > button {
+      width: 100%;
+  }
+
   .modal__title {
     margin-top: 0;
     margin-bottom: 0;
@@ -283,7 +331,12 @@ ul {
     line-height: 1.5;
     color: rgba(0,0,0,.8);
   }
-  
+
+  .modal  input {
+      height: 40px;
+  }
+
+  /*
   .modal__btn {
     font-size: .875rem;
     padding-left: 1rem;
@@ -292,7 +345,6 @@ ul {
     padding-bottom: .5rem;
     background-color: #e6e6e6;
     color: rgba(0,0,0,.8);
-    /* border-radius: .25rem; */
     border-style: none;
     border-width: 0;
     cursor: pointer;
@@ -309,25 +361,26 @@ ul {
     transform: translateZ(0);
     transition: all 0.25;
   }
+  */
   
-  .modal__btn-primary {
+  /* .modal__btn-primary {
     border: 1px solid #029af0;
     background-color: #029af0;
     color: #fff;
-  }
+  } */
 
-  .modal__btn-primary:hover {
+  /* .modal__btn-primary:hover {
       background: #007DC3;
       border-color: #007DC3;
-  }
+  } */
 
-  .chios__edittaskmicromodal input,
-  .chios__addtaskmicromodal input {
-      width: 100%;
+  .chios__edittaskmicromodal input[type="text"],
+  .chios__addtaskmicromodal input[type="text"] {
+      /* width: 100%; */
       min-width: 350px;
-      border:none;
-      outline: none;
-      border-bottom: 1px solid #eee;
+      /* border:none; */
+      /* outline: none; */
+      /* border-bottom: 1px solid #eee; */
   }
 
   .chios__addtaskmicromodal main {
@@ -412,6 +465,34 @@ ul {
     will-change: transform;
   }
 
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color: #eee;
+        font-size: 0.88rem;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #eee;
+        font-size: 0.88rem;
+        opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #eee;
+        font-size: 0.88rem;
+        opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #eee;
+        font-size: 0.88rem;
+    }
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #eee;
+        font-size: 0.88rem;
+    }
+
+    ::placeholder { /* Most modern browsers support this now. */
+        color: #eee;
+        font-size: 0.88rem;
+    }
 
   /*  Plugin overrides */
 
