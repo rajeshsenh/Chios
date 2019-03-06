@@ -1,4 +1,4 @@
-## Chios - A simple todo like application for efficiency.
+## Chios - A app to increase your daily efficiency.
 
 #### View your tasks , sort them
 
@@ -52,6 +52,7 @@ You need to create the following tables in MySql
 
 #### IMPORTANT ON HOLD
  - [Implement sort](https://jsfiddle.net/8zgsrb5k/)
+ - [Integrate and port to React](https://daveceddia.com/create-react-app-express-backend/) - Currently app built using Express | jQuery | MySql 
 
 #### ENCANCEMENTS
  - Validation
