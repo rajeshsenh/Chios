@@ -1,18 +1,18 @@
 ## Chios - A simple todo like application for efficiency.
 
-##### View your tasks , sort them
+#### View your tasks , sort them
 
 ![View your tasks , sort them](https://i.imgur.com/prgdB5i.jpg)
 
-##### Add new task
+#### Add new task
 
 ![Add new task](https://i.imgur.com/sY6bR47.jpg)
 
-##### Edit task
+#### Edit task
 
 ![Edit task](https://i.imgur.com/BW6FWcE.jpg)
 
-##### Delete task
+#### Delete task
 
 ![Delete task](https://i.imgur.com/eIL4kVa.jpg)
 
