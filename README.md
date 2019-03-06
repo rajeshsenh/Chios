@@ -1,3 +1,22 @@
+## Chios - A simple todo like application for efficiency.
+
+##### View your tasks , sort them
+
+![View your tasks , sort them](https://i.imgur.com/prgdB5i.jpg)
+
+##### Add new task
+
+![Add new task](https://i.imgur.com/sY6bR47.jpg)
+
+##### Edit task
+
+![Edit task](https://i.imgur.com/BW6FWcE.jpg)
+
+##### Delete task
+
+![Delete task](https://i.imgur.com/eIL4kVa.jpg)
+
+
 ## Software required to run Chios
 
 - Express
@@ -14,7 +33,7 @@ You need to create the following tables in MySql
 
 ##### TABLE - mytasks
 
-![Table mytags](https://i.imgur.com/VkD4uIN.jpg)
+![Table mytasks](https://i.imgur.com/F4jan78.jpg)
 
 ##### TABLE - mytasks_mytags
 
