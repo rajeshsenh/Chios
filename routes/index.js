@@ -19,6 +19,13 @@ router.post( '/edittaskstodisplay' , ( req , res , next ) => {
     database : 'mytasks'
   });
   
+  /*var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'indegene@123',
+    database : 'mytasks'
+  });*/
+  
   connection.connect()
   
   connection.query( QUERY_FOR_TASK  , function (err, rows, fields) {
