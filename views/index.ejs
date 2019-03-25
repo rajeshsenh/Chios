@@ -53,15 +53,15 @@
 
 
             <div class="chios__sorttasks">
-                <% var data = tags %>
-                <% data.forEach( function( _e , i ) {  %>
-                    <div class="pretty p-default p-round p-thick">
-                        <input type="radio" value="<%= _e.tag %>" name="tagsradio"/>
-                        <div class="state p-success-o">
-                            <label><%= _e.tag %></label>
-                        </div>
+            <% var data = tags %>
+            <% data.forEach( function( _e , i ) {  %>
+                <div class="pretty p-default p-round p-thick">
+                    <input type="radio" value="<%= _e.tag %>" name="tagsradio"/>
+                    <div class="state p-success-o">
+                        <label><%= _e.tag %></label>
                     </div>
-                <% }) %>   
+                </div>
+            <% }) %>   
             </div>   
 
             <ul class="chiostaskblock__maintasklist">

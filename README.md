@@ -46,11 +46,13 @@ You need to create the following tables in MySql
 ## TODO's
 
 #### IMPORTANT
-- success and failure messages.
-- Color should be added , when creating task itself
-- Work on code reflecting live update.
+ - Add functionality to delete modal.
+ - Add all modals.
 
 #### IMPORTANT ON HOLD
+ - Success and failure messages.
+ - Color should be added , when creating task itself
+ - Work on code reflecting live update.
  - [Implement sort](https://jsfiddle.net/8zgsrb5k/)
  - [Integrate and port to React](https://daveceddia.com/create-react-app-express-backend/) - Currently app built using Express | jQuery | MySql 
 

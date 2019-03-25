@@ -20,6 +20,7 @@ $RECYCLE.BIN/
 
 # node_modules folder
 node_modules/
+client/node_modules/
 
 # =========================
 # Operating System Files
